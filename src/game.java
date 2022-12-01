@@ -4,79 +4,93 @@ public class game {
     public static final String YELLOW = "\033[0;33m";  // YELLOW
     public static final String WHITE = "\033[0;37m";   // WHITE
 
-    private int count; // index
+    private int rounds; // index
     private String word;
-        public String game() { //no return
+    private String results;
+
+    public game (String word){
+        rounds = 0;
+        this.word = word;
+        int length = word.length();
+            while (length!=5){
+                System.out.println("Your word is "+length+" not 5 letters long.");
+            }
+        }
+
+    public game() { //no return
             int num = (int) (Math.random() * 10);
             if (num == 0) {
                 word = "lemon";
-            return word;
+
         }
             if (num ==1) {
                 word = "phone";
-                return word;
+
             }
             if (num ==2){
                 word ="mouse";
-                return word;
+
             }
             if (num==3){
                 word = "lunch";
-                return word;
+
             }
             if (num==4){
                 word = "space";
-                return word;
+
             }
             if (num==5){
                 word = "extra";
-                return word;
+
             }
             if (num==6){
                 word ="melon";
-                return word;
+
             }
             if (num==7){
                 word ="snack";
-                return word;
+
             }
             if (num==8){
                 word ="games";
-                return word;
+
             }
             if (num==9){
                 word ="dimly";
-                return word;
+
             }
             if (num==10){
                 word ="water";
-                return word;
+
             }
             else {
-                return "";
+
             }
+
         }
-    public void wordCheck (String word,String g1){
-        this.word = word;
-            for (int count = 0;count<5;count++){//checking each letter
-                this.count = count;
+        public String toString(){
+        return results;
+        }
+
+        public String wordCheck (String g1){
+        String result = "";
+           for (int count = 0;count<5;count++){//checking each letter
                if (g1.substring(count,count+1).equals(word.substring(count,count+1))){ //if the letter is in the right place
-                   System.out.print(GREEN+g1.substring(count,count+1));
+                    result += GREEN+g1.substring(count,count+1);
                }
                else if (word.indexOf(g1.substring(count,count+1))==-1){ //check if the letter is not in the right place
-                   System.out.print(YELLOW+g1.substring(count,count+1));
+                     result += YELLOW+g1.substring(count,count+1);
                }
                else {
-                   System.out.print(WHITE+g1.substring(count,count+1)); //no exist
+                    result +=WHITE+g1.substring(count,count+1); //no exist
                }
-               System.out.print("\n");
             }
+           rounds ++;
+           results += result + "\n";
+           return result;
         }
         public boolean gameEnder(String g1){ //change count name thing whatever
-            if (count>5 || word.equals(g1)){ //end conditions
-                return true;
-            }
-            if (count<=5 && word.equals(g1)){ //fix this pls arden
+            if (rounds>5 || word.equals(g1)){ //end conditions
                 return true;
             }
             else {
@@ -84,11 +98,12 @@ public class game {
             }
         }
 //make round thingy annouce end game make round thingy tostring
-        public String annoucement (boolean gameEnder()){
+        public String annoucement (){  //void
             if (gameEnder()){
-                return "You win!It took you "+count+" rounds to win!";
+                return "You win!It took you "+rounds+" rounds to win!";
             }
-
+            else {
+                return "You lose.";
             }
     }
     }
