@@ -1,33 +1,33 @@
-import java.util.Scanner;
+import java.util.Scanner; //*** IT DOES NOT RUN
 public class test {
-    public static void main (String[] args){
-        Scanner scan = new Scanner (System.in);
-        System.out.println("Welcome to knock off wordle. You have 5 guesses starting now.(lowercase please)"); //ask the user if they want mode
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        game game1;
+        System.out.println("Welcome to knock off wordle. You have 5 guesses starting now.(lowercase please)Please enter make or no make"); //ask the user if they want mode
         String yn = scan.nextLine();
-        if (yn.equals("make")){
+        if (yn.equals("make")) {
             System.out.println("Enter your word.");
             String word = scan.nextLine();
             int length = word.length();
-            while (length!=5){
+            while (length != 5) {
+                System.out.println("Your word is " + length + " not 5 letters long.");
                 System.out.println("Enter your word.");
                 word = scan.nextLine();
                 length = word.length();
-                System.out.println("Your word is "+length+" not 5 letters long.");
             }
-            game game1 = new game(word);
+            game1 = new game(word);
+        } else {
+            game1 = new game();
         }
-        else {
-            game game1 = new game();
+        for (int round = 0; round<5; round++) {
+            String guess = scan.nextLine();
+            game1.wordCheck(guess);
+            System.out.println(game1);
+            game1.announcement(guess);
+
         }
 
-        //make getter
-        public boolean gameEnder(String g1){ //change count name thing whatever
-            if (rounds>5 || word.equals(g1)){ //end conditions
-                return true;
-            }
-            else {
-                return false; //question my logic
-            }
-        }
     }
 }
+
+

@@ -1,23 +1,21 @@
-public class game {
+public class game {  //*** IT DOES NOT RUN
     public static final String RESET = "\033[0m";  // Text Reset
     public static final String GREEN = "\033[0;32m";   // GREEN
     public static final String YELLOW = "\033[0;33m";  // YELLOW
     public static final String WHITE = "\033[0;37m";   // WHITE
 
-    private int rounds; // index
+    private int rounds;
     private String word;
     private String results;
 
     public game (String word){
         rounds = 0;
         this.word = word;
-        int length = word.length();
-            while (length!=5){
-                System.out.println("Your word is "+length+" not 5 letters long.");
-            }
+        this.results = "";
         }
 
     public game() { //no return
+        this.results = "";
             int num = (int) (Math.random() * 10);
             if (num == 0) {
                 word = "lemon";
@@ -69,6 +67,7 @@ public class game {
 
         }
         public String toString(){
+
         return results;
         }
 
@@ -78,7 +77,7 @@ public class game {
                if (g1.substring(count,count+1).equals(word.substring(count,count+1))){ //if the letter is in the right place
                     result += GREEN+g1.substring(count,count+1);
                }
-               else if (word.indexOf(g1.substring(count,count+1))==-1){ //check if the letter is not in the right place
+               else if (word.indexOf(g1.substring(count,count+1))!=-1){ //check if the letter is not in the right place
                      result += YELLOW+g1.substring(count,count+1);
                }
                else {
@@ -89,22 +88,25 @@ public class game {
            results += result + "\n";
            return result;
         }
-        public boolean gameEnder(String g1){ //change count name thing whatever
+        public boolean gameEnder(String g1){
             if (rounds>5 || word.equals(g1)){ //end conditions
                 return true;
             }
             else {
-                return false; //question my logic
+                return false;
             }
         }
-//make round thingy annouce end game make round thingy tostring
-        public String annoucement (){  //void
-            if (gameEnder()){
-                return "You win!It took you "+rounds+" rounds to win!";
+
+        public void announcement (String g1){  //void
+            if (gameEnder(g1)){
+                if (word.equals(g1)) {
+                    System.out.println("You win! It took you " + rounds + " rounds to win!");
+                }
+                else {
+                    System.out.println("You lose.");
+                }
             }
-            else {
-                return "You lose.";
-            }
+
     }
     }
 
