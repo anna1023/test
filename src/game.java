@@ -85,7 +85,7 @@ public class game {  //*** IT DOES NOT RUN
                }
             }
            rounds ++;
-           results += result + "\n";
+           results += result + "\n"; //delete a println somewhere
            return result;
         }
         public boolean gameEnder(String g1){
