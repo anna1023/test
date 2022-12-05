@@ -1,11 +1,11 @@
-import java.util.Scanner; //*** IT DOES NOT RUN
+import java.util.Scanner;
 public class test {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         game game1;
         System.out.println("Welcome to knock off wordle.To create your own word, type in create otherwise type anything else.");
         String yn = scan.nextLine();
-        if (yn.equals("make")) {
+        if (yn.equals("create")) {
             System.out.println("Enter your word.");
             String word = scan.nextLine();
             int length = word.length();
@@ -15,9 +15,15 @@ public class test {
                 word = scan.nextLine();
                 length = word.length();
             }
+            for (int count = 0; count <5; count++){
+                System.out.print("\n");
+            }
             game1 = new game(word);
         } else {
             game1 = new game();
+        }
+        for (int count = 0; count <6; count++){
+            System.out.println('\n');
         }
         System.out.println("Your 5 guess starts now.");
         for (int round = 0; round<5; round++) {
@@ -27,9 +33,14 @@ public class test {
                 guess = scan.nextLine();
             }
             game1.wordCheck(guess);
-            System.out.println(game1);
-            game1.announcement(guess);//if you lose annoucement doesn't work.
-
+            for (int count = 0; count < 11; count++){
+                System.out.println("");
+            }
+            System.out.print(game1);
+            game1.announcement(guess);
+            if (game1.gameEnder(guess)){
+                break;
+            }
         }
 
     }

@@ -1,4 +1,4 @@
-public class game {  //*** IT DOES NOT RUN
+public class game {
     public static final String RESET = "\033[0m";  // Text Reset
     public static final String GREEN = "\033[0;32m";   // GREEN
     public static final String YELLOW = "\033[0;33m";  // YELLOW
@@ -74,14 +74,15 @@ public class game {  //*** IT DOES NOT RUN
         public String wordCheck (String g1){
         String result = "";
            for (int count = 0;count<5;count++){//checking each letter
-               if (g1.substring(count,count+1).equals(word.substring(count,count+1))){ //if the letter is in the right place
-                    result += GREEN+g1.substring(count,count+1);
+               String letter = g1.substring(count,count+1);
+               if ((letter).equals(word.substring(count,count+1))){ //if the letter is in the right place
+                    result += GREEN+letter;
                }
-               else if (word.indexOf(g1.substring(count,count+1))!=-1){ //check if the letter is not in the right place
-                     result += YELLOW+g1.substring(count,count+1);
+               else if (word.indexOf(letter)!=-1){ //check if the letter is not in the right place
+                     result += YELLOW+letter;
                }
                else {
-                    result +=WHITE+g1.substring(count,count+1); //no exist
+                    result +=WHITE+letter; //no exist
                }
             }
            rounds ++;
@@ -89,7 +90,7 @@ public class game {  //*** IT DOES NOT RUN
            return result;
         }
         public boolean gameEnder(String g1){
-            if (rounds>5 || word.equals(g1)){ //end conditions
+            if (rounds==5 || word.equals(g1)){ //end conditions
                 return true;
             }
             else {
@@ -97,7 +98,7 @@ public class game {  //*** IT DOES NOT RUN
             }
         }
 
-        public void announcement (String g1){  //void
+        public void announcement (String g1){
             if (gameEnder(g1)){
                 if (word.equals(g1)) {
                     System.out.println("You win! It took you " + rounds + " rounds to win!");
