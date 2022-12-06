@@ -1,8 +1,8 @@
 import java.util.Scanner;
-public class test {
+public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        game game1;
+        Game game1;
         System.out.println("Welcome to knock off wordle.To create your own word, type in create otherwise type anything else.");
         String yn = scan.nextLine();
         if (yn.equals("create")) {
@@ -18,9 +18,9 @@ public class test {
             for (int count = 0; count <5; count++){
                 System.out.print("\n");
             }
-            game1 = new game(word);
+            game1 = new Game(word);
         } else {
-            game1 = new game();
+            game1 = new Game();
         }
         for (int count = 0; count <6; count++){
             System.out.println('\n');

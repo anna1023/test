@@ -1,7 +1,7 @@
 /**
  * This is a class that is a game where you guess the word.
  */
-public class game {
+public class Game {
     /** This changes the color of the print to green. */
     public static final String GREEN = "\033[0;32m";   // GREEN
     /** This changes the color of the print to yellow. */
@@ -22,7 +22,7 @@ public class game {
      * it sets the custom word to the variable word and set round to 0
      * @param word - custom word
      */
-    public game (String word){
+    public Game (String word){
         rounds = 0;
         this.word = word;
         this.results = "";
@@ -30,7 +30,7 @@ public class game {
 
     /**
      * it's a default constructor that generates the word based on a random number generated */
-    public game() {
+    public Game() {
         this.results = "";
             int num = (int) (Math.random() * 10);
             if (num == 0) {
