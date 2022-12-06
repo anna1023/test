@@ -1,20 +1,36 @@
+/**
+ * This is a class that is a game where you guess the word.
+ */
 public class game {
-    public static final String RESET = "\033[0m";  // Text Reset
+    /** This changes the color of the print to green. */
     public static final String GREEN = "\033[0;32m";   // GREEN
+    /** This changes the color of the print to yellow. */
     public static final String YELLOW = "\033[0;33m";  // YELLOW
+    /** This changes the color of the print to red. */
+    public static final String RED = "\033[0;31m";// RED
+    /** This changes the color of the print to white. */
     public static final String WHITE = "\033[0;37m";   // WHITE
 
+    /** This is the number of rounds happening in the game. */
     private int rounds;
+    /** This is the answer/word that the player is trying to guess. */
     private String word;
+    /** This is all the results of the guesses that are printed so far.  */
     private String results;
 
+    /**
+     * it sets the custom word to the variable word and set round to 0
+     * @param word - custom word
+     */
     public game (String word){
         rounds = 0;
         this.word = word;
         this.results = "";
         }
 
-    public game() { //no return
+    /**
+     * it's a default constructor that generates the word based on a random number generated */
+    public game() {
         this.results = "";
             int num = (int) (Math.random() * 10);
             if (num == 0) {
@@ -66,15 +82,22 @@ public class game {
             }
 
         }
+
+    /** shows all the results of the guesses
+     @return String - results */
         public String toString(){
 
         return results;
         }
 
-        public String wordCheck (String g1){
+    /** checks the word letter by letter and adds one to round everytime it's run
+     @param guess - the user input
+     @return String - the user input color coded to show what's right and what's wrong
+     */
+        public String wordCheck (String guess){
         String result = "";
            for (int count = 0;count<5;count++){//checking each letter
-               String letter = g1.substring(count,count+1);
+               String letter = guess.substring(count,count+1);
                if ((letter).equals(word.substring(count,count+1))){ //if the letter is in the right place
                     result += GREEN+letter;
                }
@@ -89,8 +112,13 @@ public class game {
            results += result + "\n"; //delete a println somewhere
            return result;
         }
-        public boolean gameEnder(String g1){
-            if (rounds==5 || word.equals(g1)){ //end conditions
+
+    /** checks to see if any of the end conditions have been met
+     @param guess - the user input
+     @return boolean - whether the game is ended or not
+     */
+        public boolean gameEnder(String guess){
+            if (rounds==5 || word.equals(guess)){ //end conditions
                 return true;
             }
             else {
@@ -98,17 +126,20 @@ public class game {
             }
         }
 
-        public void announcement (String g1){
-            if (gameEnder(g1)){
-                if (word.equals(g1)) {
+    /** announces to the user whether they win or not
+     @param guess - the user input
+     */
+        public void announcement (String guess){
+            if (gameEnder(guess)){
+                if (word.equals(guess)) {
                     System.out.println("You win! It took you " + rounds + " rounds to win!");
                 }
                 else {
-                    System.out.println("You lose.");
+                    System.out.println(RED+"You lose.The word is "+word+".");
                 }
             }
 
     }
-    }
+}
 
 
